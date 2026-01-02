@@ -155,17 +155,17 @@ infinite-battle-nextjs/
   - [ ] `src/domain/entities/Match.ts`
   - [ ] `src/domain/entities/Card.ts`
 
-### 1.4 Repository Interfaces & Mock Implementation (TO BE DONE LATER)
-- [ ] Create repository interfaces
-  - [ ] `src/application/repositories/IUserRepository.ts`
-  - [ ] `src/application/repositories/IProfileRepository.ts`
-  - [ ] `src/application/repositories/ICharacterRepository.ts`
-  - [ ] `src/application/repositories/IMatchRepository.ts`
-- [ ] Create mock repositories
-  - [ ] `src/infrastructure/repositories/mock/MockUserRepository.ts`
-  - [ ] `src/infrastructure/repositories/mock/MockProfileRepository.ts`
-  - [ ] `src/infrastructure/repositories/mock/MockCharacterRepository.ts`
-  - [ ] `src/infrastructure/repositories/mock/MockMatchRepository.ts`
+### 1.4 Repository Interfaces & Mock Implementation ✅ COMPLETED
+- [x] Create repository interfaces
+  - [x] `src/application/repositories/IProfileRepository.ts`
+  - [x] `src/application/repositories/ICharacterRepository.ts`
+  - [x] `src/application/repositories/IMatchRepository.ts`
+  - [x] `src/application/repositories/IBattleRepository.ts`
+- [x] Create mock repositories
+  - [x] `src/infrastructure/repositories/mock/MockProfileRepository.ts`
+  - [x] `src/infrastructure/repositories/mock/MockCharacterRepository.ts`
+  - [x] `src/infrastructure/repositories/mock/MockMatchRepository.ts`
+  - [x] `src/infrastructure/repositories/mock/MockBattleRepository.ts`
 
 ---
 
