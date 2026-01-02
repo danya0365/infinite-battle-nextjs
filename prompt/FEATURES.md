@@ -1,0 +1,3 @@
+# Infinite Battle
+
+Create a Next.js 14 web application that mimics Dragon Ball Legends gameplay. Use React Three Fiber for 3D battle scenes, React Spring for smooth animations, Colyseus for real-time multiplayer, PeerJS for peer-to-peer connections, and Supabase for backend. The app must be full-screen, mobile-optimized, and require profile creation before playing. Support multiple profiles per user. Implement a card-based combat system with touch controls (swipe to dodge, tap cards to attack). Include profile management, character roster, and match history. Design with vibrant DBL-style UI, energy effects, and smooth transitions. Make it a PWA with offline support.
