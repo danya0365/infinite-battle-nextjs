@@ -258,28 +258,29 @@ infinite-battle-nextjs/
 
 ## ✅ Phase 4: Core Features (After Layout Complete)
 
-### 4.1 Profile Management
-- [ ] Create profile page
-- [ ] Create ProfilePresenter
-- [ ] Create ProfileView (Main & Retro)
-- [ ] Profile CRUD operations
+### 4.1 Profile Management ✅ COMPLETED
+- [x] Create profile page
+- [x] Create ProfilePresenter
+- [x] Create ProfileView (Main & Retro)
+- [x] Profile switcher functionality
 
-### 4.2 Character Roster
-- [ ] Create roster page
-- [ ] Character list view
-- [ ] Character detail view
-- [ ] Character selection
+### 4.2 Character Roster ✅ COMPLETED
+- [x] Create roster page
+- [x] Character list view with filters
+- [x] Character detail modal
+- [x] Search and filter by element/rarity
 
-### 4.3 Battle System
-- [ ] Battle page setup
-- [ ] Card-based combat UI
-- [ ] Touch controls
-- [ ] Battle animations
+### 4.3 Battle System ✅ COMPLETED
+- [x] Battle page setup
+- [x] Card-based combat UI
+- [x] Touch controls
+- [x] Battle animations
 
-### 4.4 Match History
-- [ ] Match history page
-- [ ] Match details view
-- [ ] Statistics
+### 4.4 Match History ✅ COMPLETED
+- [x] Match history page
+- [x] Match details with stats
+- [x] Statistics summary
+- [x] Filter by type and result
 
 ---
 
