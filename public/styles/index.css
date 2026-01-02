@@ -1,12 +1,51 @@
 @import "tailwindcss";
-
-/* custom variants */
-@custom-variant dark (&:where(.dark, .dark *));
-
 @import "./fonts.css";
 @import "./theme.css";
 @import "./base.css";
+@import "./dark.css";
 @import "./components.css";
 @import "./utilities.css";
-@import "./dark.css";
-@import "./backend.css";
+@import "./main-layout.css";
+@import "./retro-layout.css";
+
+/* Global Reset for Full Screen */
+html,
+body {
+  @apply h-full w-full m-0 p-0 overflow-hidden;
+}
+
+#__next {
+  @apply h-full w-full;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}

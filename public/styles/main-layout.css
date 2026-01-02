@@ -1,0 +1,338 @@
+/**
+ * MainLayout CSS - Modern Premium Design
+ * Supports both light and dark themes
+ */
+
+/* ===== Main Layout Base ===== */
+.main-layout {
+  --main-primary: oklch(65% 0.25 250);
+  --main-primary-dark: oklch(55% 0.25 250);
+  --main-secondary: oklch(75% 0.2 300);
+  --main-accent: oklch(70% 0.3 150);
+  --main-success: oklch(70% 0.2 145);
+  --main-warning: oklch(80% 0.2 85);
+  --main-danger: oklch(65% 0.25 25);
+  
+  /* Gradients */
+  --main-gradient-hero: linear-gradient(135deg, oklch(50% 0.2 250) 0%, oklch(40% 0.25 280) 50%, oklch(30% 0.2 300) 100%);
+  --main-gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --main-gradient-button: linear-gradient(135deg, var(--main-primary) 0%, var(--main-primary-dark) 100%);
+  
+  /* Glass effect */
+  --main-glass-bg: rgba(255, 255, 255, 0.1);
+  --main-glass-border: rgba(255, 255, 255, 0.2);
+  --main-glass-blur: 20px;
+  
+  /* Shadows */
+  --main-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --main-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --main-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --main-shadow-glow: 0 0 20px rgba(99, 102, 241, 0.4);
+  
+  /* Animation timing */
+  --main-transition-fast: 150ms ease;
+  --main-transition-normal: 250ms ease;
+  --main-transition-slow: 400ms ease;
+}
+
+/* Dark mode overrides */
+.dark .main-layout {
+  --main-glass-bg: rgba(0, 0, 0, 0.3);
+  --main-glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Main Layout Container ===== */
+.main-container {
+  @apply h-screen w-screen overflow-hidden flex flex-col;
+  background: var(--main-gradient-hero);
+}
+
+.main-content {
+  @apply flex-1 overflow-hidden relative;
+}
+
+/* ===== Main Header ===== */
+.main-header {
+  @apply w-full h-16 flex items-center justify-between px-4 md:px-6;
+  background: var(--main-glass-bg);
+  backdrop-filter: blur(var(--main-glass-blur));
+  -webkit-backdrop-filter: blur(var(--main-glass-blur));
+  border-bottom: 1px solid var(--main-glass-border);
+}
+
+.main-header-logo {
+  @apply flex items-center gap-2;
+}
+
+.main-header-logo-text {
+  @apply text-xl md:text-2xl font-bold bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+}
+
+.main-header-nav {
+  @apply hidden md:flex items-center gap-6;
+}
+
+.main-header-nav-link {
+  @apply text-white/80 hover:text-white transition-colors duration-200 font-medium;
+}
+
+.main-header-nav-link.active {
+  @apply text-white;
+}
+
+.main-header-actions {
+  @apply flex items-center gap-3;
+}
+
+/* ===== Main Footer ===== */
+.main-footer {
+  @apply w-full h-12 flex items-center justify-between px-4 md:px-6 text-sm text-white/60;
+  background: var(--main-glass-bg);
+  backdrop-filter: blur(var(--main-glass-blur));
+  -webkit-backdrop-filter: blur(var(--main-glass-blur));
+  border-top: 1px solid var(--main-glass-border);
+}
+
+/* ===== Main Button ===== */
+.main-btn {
+  @apply relative px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  @apply flex items-center justify-center gap-2;
+}
+
+.main-btn-primary {
+  @apply text-white;
+  background: var(--main-gradient-button);
+  box-shadow: var(--main-shadow-md);
+}
+
+.main-btn-primary:hover {
+  @apply transform scale-105;
+  box-shadow: var(--main-shadow-glow);
+}
+
+.main-btn-primary:active {
+  @apply transform scale-95;
+}
+
+.main-btn-secondary {
+  @apply text-white/90 border;
+  background: var(--main-glass-bg);
+  border-color: var(--main-glass-border);
+  backdrop-filter: blur(10px);
+}
+
+.main-btn-secondary:hover {
+  @apply bg-white/20;
+}
+
+.main-btn-ghost {
+  @apply text-white/80 hover:text-white hover:bg-white/10;
+}
+
+.main-btn-icon {
+  @apply w-10 h-10 p-0 rounded-full;
+}
+
+.main-btn-sm {
+  @apply px-3 py-1.5 text-sm;
+}
+
+.main-btn-lg {
+  @apply px-6 py-3 text-lg;
+}
+
+/* ===== Main Input ===== */
+.main-input {
+  @apply w-full px-4 py-2.5 rounded-lg text-white placeholder-white/50;
+  @apply transition-all duration-200;
+  background: var(--main-glass-bg);
+  border: 1px solid var(--main-glass-border);
+  backdrop-filter: blur(10px);
+}
+
+.main-input:focus {
+  @apply outline-none ring-2 ring-indigo-400/50;
+  border-color: rgba(129, 140, 248, 0.5);
+}
+
+.main-input-label {
+  @apply block text-sm font-medium text-white/80 mb-1.5;
+}
+
+.main-input-error {
+  @apply border-red-400/50 ring-red-400/30;
+}
+
+.main-input-error-text {
+  @apply text-red-300 text-sm mt-1;
+}
+
+/* ===== Main Select ===== */
+.main-select {
+  @apply w-full px-4 py-2.5 rounded-lg text-white;
+  @apply transition-all duration-200 cursor-pointer;
+  @apply appearance-none;
+  background: var(--main-glass-bg);
+  border: 1px solid var(--main-glass-border);
+  backdrop-filter: blur(10px);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+.main-select:focus {
+  @apply outline-none ring-2 ring-indigo-400/50;
+}
+
+.main-select option {
+  @apply bg-gray-900 text-white;
+}
+
+/* ===== Main Modal ===== */
+.main-modal-overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.main-modal {
+  @apply relative w-full max-w-lg rounded-2xl p-6;
+  @apply transform transition-all duration-300;
+  background: var(--main-glass-bg);
+  backdrop-filter: blur(var(--main-glass-blur));
+  -webkit-backdrop-filter: blur(var(--main-glass-blur));
+  border: 1px solid var(--main-glass-border);
+  box-shadow: var(--main-shadow-lg);
+}
+
+.main-modal-header {
+  @apply flex items-center justify-between mb-4;
+}
+
+.main-modal-title {
+  @apply text-xl font-bold text-white;
+}
+
+.main-modal-close {
+  @apply w-8 h-8 flex items-center justify-center rounded-full;
+  @apply text-white/60 hover:text-white hover:bg-white/10 transition-colors;
+}
+
+.main-modal-body {
+  @apply text-white/80;
+}
+
+.main-modal-footer {
+  @apply flex justify-end gap-3 mt-6;
+}
+
+/* ===== Main Card ===== */
+.main-card {
+  @apply rounded-2xl p-5;
+  background: var(--main-glass-bg);
+  backdrop-filter: blur(var(--main-glass-blur));
+  -webkit-backdrop-filter: blur(var(--main-glass-blur));
+  border: 1px solid var(--main-glass-border);
+  box-shadow: var(--main-shadow-sm);
+  transition: all var(--main-transition-normal);
+}
+
+.main-card:hover {
+  @apply transform -translate-y-1;
+  box-shadow: var(--main-shadow-md);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.main-card-title {
+  @apply text-lg font-bold text-white mb-2;
+}
+
+.main-card-content {
+  @apply text-white/70;
+}
+
+/* ===== Main Popover ===== */
+.main-popover {
+  @apply absolute z-40 min-w-48 rounded-xl p-3;
+  background: var(--main-glass-bg);
+  backdrop-filter: blur(var(--main-glass-blur));
+  -webkit-backdrop-filter: blur(var(--main-glass-blur));
+  border: 1px solid var(--main-glass-border);
+  box-shadow: var(--main-shadow-lg);
+}
+
+.main-popover-item {
+  @apply w-full px-3 py-2 rounded-lg text-left text-white/80;
+  @apply hover:bg-white/10 hover:text-white transition-colors;
+}
+
+/* ===== Animations ===== */
+@keyframes main-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes main-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes main-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6); }
+}
+
+@keyframes main-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.main-animate-pulse {
+  animation: main-pulse 2s ease-in-out infinite;
+}
+
+.main-animate-float {
+  animation: main-float 3s ease-in-out infinite;
+}
+
+.main-animate-glow {
+  animation: main-glow 2s ease-in-out infinite;
+}
+
+.main-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: main-shimmer 1.5s infinite;
+}
+
+/* ===== Utility Classes ===== */
+.main-glass {
+  background: var(--main-glass-bg);
+  backdrop-filter: blur(var(--main-glass-blur));
+  -webkit-backdrop-filter: blur(var(--main-glass-blur));
+  border: 1px solid var(--main-glass-border);
+}
+
+.main-gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+}
+
+.main-hover-lift {
+  @apply transition-transform duration-200;
+}
+
+.main-hover-lift:hover {
+  @apply transform -translate-y-1;
+}
+
+.main-hover-scale {
+  @apply transition-transform duration-200;
+}
+
+.main-hover-scale:hover {
+  @apply transform scale-105;
+}
