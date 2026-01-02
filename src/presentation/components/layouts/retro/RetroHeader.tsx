@@ -131,6 +131,12 @@ export function RetroHeader() {
         <Link href="/match-history" className="retro-link" style={{ marginRight: '12px' }}>
           Match History
         </Link>
+        <Link href="/leaderboard" className="retro-link" style={{ marginRight: '12px' }}>
+          🏆 Ranking
+        </Link>
+        <Link href="/achievements" className="retro-link" style={{ marginRight: '12px' }}>
+          🏅 Badges
+        </Link>
         <Link href="/settings" className="retro-link">
           ⚙️ Settings
         </Link>

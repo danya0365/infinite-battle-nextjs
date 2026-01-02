@@ -290,6 +290,29 @@ infinite-battle-nextjs/
 - [x] Notification settings
 - [x] LocalStorage persistence
 
+### 4.6 Leaderboard Page ✅ COMPLETED
+- [x] Leaderboard page setup
+- [x] ILeaderboardRepository interface
+- [x] MockLeaderboardRepository with 30 players
+- [x] LeaderboardPresenter with ranking utilities
+- [x] Tabbed navigation (Ranked, Casual, Weekly, All Time)
+- [x] Animated table entries with tier badges
+- [x] Current player position highlight
+- [x] Main and Retro layouts
+
+### 4.7 Achievements/Badges System ✅ COMPLETED
+- [x] IAchievementRepository interface
+- [x] MockAchievementRepository with 24 achievements
+- [x] 5 categories (battle, collection, social, mastery, special)
+- [x] 5 rarities (common, uncommon, rare, epic, legendary)
+- [x] AchievementPresenter with colors, icons, utilities
+- [x] useAchievementPresenter hook with filtering
+- [x] MainAchievementContent with animated cards and modals
+- [x] RetroAchievementContent with Windows 98 style
+- [x] Achievement detail modal with progress
+- [x] Category filtering tabs
+- [x] Navigation links in both headers
+
 ---
 
 ## ✅ Phase 5: Backend Integration (Supabase)

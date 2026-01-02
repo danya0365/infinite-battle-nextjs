@@ -27,6 +27,8 @@ export function MainHeader() {
     { href: '/', label: 'Home' },
     { href: '/battle', label: 'Battle' },
     { href: '/roster', label: 'Roster' },
+    { href: '/leaderboard', label: 'Ranking' },
+    { href: '/achievements', label: 'Badges' },
     { href: '/match-history', label: 'History' },
   ];
 
