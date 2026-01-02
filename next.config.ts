@@ -1,7 +1,150 @@
 import type { NextConfig } from "next";
+import withPWAInit from "next-pwa";
+
+const withPWA = withPWAInit({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === "development",
+  runtimeCaching: [
+    {
+      urlPattern: /^https:\/\/fonts\.(?:gstatic|googleapis)\.com\/.*/i,
+      handler: "CacheFirst",
+      options: {
+        cacheName: "google-fonts",
+        expiration: {
+          maxEntries: 10,
+          maxAgeSeconds: 365 * 24 * 60 * 60,
+        },
+      },
+    },
+    {
+      urlPattern: /\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,
+      handler: "StaleWhileRevalidate",
+      options: {
+        cacheName: "static-font-assets",
+        expiration: {
+          maxEntries: 10,
+          maxAgeSeconds: 365 * 24 * 60 * 60,
+        },
+      },
+    },
+    {
+      urlPattern: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
+      handler: "StaleWhileRevalidate",
+      options: {
+        cacheName: "static-image-assets",
+        expiration: {
+          maxEntries: 64,
+          maxAgeSeconds: 30 * 24 * 60 * 60,
+        },
+      },
+    },
+    {
+      urlPattern: /\/_next\/image\?url=.+$/i,
+      handler: "StaleWhileRevalidate",
+      options: {
+        cacheName: "next-image",
+        expiration: {
+          maxEntries: 64,
+          maxAgeSeconds: 24 * 60 * 60,
+        },
+      },
+    },
+    {
+      urlPattern: /\.(?:mp3|wav|ogg)$/i,
+      handler: "CacheFirst",
+      options: {
+        cacheName: "static-audio-assets",
+        expiration: {
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60,
+        },
+        rangeRequests: true,
+      },
+    },
+    {
+      urlPattern: /\.(?:js)$/i,
+      handler: "StaleWhileRevalidate",
+      options: {
+        cacheName: "static-js-assets",
+        expiration: {
+          maxEntries: 48,
+          maxAgeSeconds: 24 * 60 * 60,
+        },
+      },
+    },
+    {
+      urlPattern: /\.(?:css|less)$/i,
+      handler: "StaleWhileRevalidate",
+      options: {
+        cacheName: "static-style-assets",
+        expiration: {
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60,
+        },
+      },
+    },
+    {
+      urlPattern: /\/_next\/data\/.+\/.+\.json$/i,
+      handler: "StaleWhileRevalidate",
+      options: {
+        cacheName: "next-data",
+        expiration: {
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60,
+        },
+      },
+    },
+    {
+      urlPattern: /\.(?:json|xml|csv)$/i,
+      handler: "NetworkFirst",
+      options: {
+        cacheName: "static-data-assets",
+        expiration: {
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60,
+        },
+      },
+    },
+    {
+      urlPattern: ({ url }: { url: URL }) => {
+        const isSameOrigin = self.origin === url.origin;
+        return isSameOrigin;
+      },
+      handler: "NetworkFirst",
+      options: {
+        cacheName: "others",
+        expiration: {
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60,
+        },
+        networkTimeoutSeconds: 10,
+      },
+    },
+    {
+      urlPattern: ({ url }: { url: URL }) => {
+        const isSameOrigin = self.origin === url.origin;
+        return !isSameOrigin;
+      },
+      handler: "NetworkFirst",
+      options: {
+        cacheName: "cross-origin",
+        expiration: {
+          maxEntries: 32,
+          maxAgeSeconds: 60 * 60,
+        },
+        networkTimeoutSeconds: 10,
+      },
+    },
+  ],
+});
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,
+  // Add empty turbopack config to silence the warning
+  // PWA uses webpack config, so we need to explicitly handle this
+  turbopack: {},
 };
 
-export default nextConfig;
+export default withPWA(nextConfig);

@@ -306,7 +306,13 @@ infinite-battle-nextjs/
 - [ ] React Three Fiber 3D battle scenes
 - [ ] Colyseus real-time multiplayer
 - [ ] PeerJS peer-to-peer connections
-- [ ] PWA with offline support
+- [x] PWA with offline support ✅ COMPLETED
+  - [x] Web App Manifest
+  - [x] Service Worker (next-pwa)
+  - [x] Offline page
+  - [x] PWA icons (all sizes)
+  - [x] Install prompt components
+  - [x] Offline indicator
 
 ---
 
