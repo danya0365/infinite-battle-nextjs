@@ -190,7 +190,7 @@ export default function MainBattleContent({
           <div style={{ flex: 1, maxWidth: '300px', margin: '0 16px' }}>
             <div style={{
               height: '8px',
-              background: 'rgba(255,255,255,0.1)',
+              background: 'var(--color-border)',
               borderRadius: '4px',
               overflow: 'hidden',
             }}>
@@ -215,7 +215,7 @@ export default function MainBattleContent({
             onClick={() => setShowPauseMenu(true)}
             style={{
               padding: '8px 16px',
-              background: 'rgba(255,255,255,0.1)',
+              background: 'var(--main-glass-bg)',
               border: 'none',
               borderRadius: '8px',
               cursor: 'pointer',
@@ -501,7 +501,7 @@ function CharacterSection({
           </div>
           <div style={{
             height: '12px',
-            background: 'rgba(255,255,255,0.1)',
+            background: 'var(--color-border)',
             borderRadius: '6px',
             overflow: 'hidden',
           }}>
@@ -525,7 +525,7 @@ function CharacterSection({
           </div>
           <div style={{
             height: '8px',
-            background: 'rgba(255,255,255,0.1)',
+            background: 'var(--color-border)',
             borderRadius: '4px',
             overflow: 'hidden',
           }}>
@@ -622,7 +622,7 @@ function ActionButton({
       disabled={disabled}
       style={{
         padding: '8px 16px',
-        background: disabled ? 'rgba(255,255,255,0.05)' : `${color}22`,
+        background: disabled ? 'var(--main-glass-bg)' : `${color}22`,
         border: `2px solid ${disabled ? '#555' : color}`,
         borderRadius: '12px',
         cursor: disabled ? 'not-allowed' : 'pointer',

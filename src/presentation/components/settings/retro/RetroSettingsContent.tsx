@@ -122,9 +122,10 @@ export default function RetroSettingsContent({
             onClick={() => setActiveTab(tab.id)}
             style={{
               padding: '6px 16px',
-              background: activeTab === tab.id ? '#d4d0c8' : '#c0c0c0',
-              border: '2px outset #d4d0c8',
-              borderBottom: activeTab === tab.id ? 'none' : '2px outset #d4d0c8',
+              background: activeTab === tab.id ? 'var(--retro-btn-face)' : 'var(--retro-bg)',
+              border: '2px outset var(--retro-btn-face)',
+              borderBottom: activeTab === tab.id ? 'none' : '2px outset var(--retro-btn-face)',
+              color: 'var(--retro-text)',
               cursor: 'pointer',
               marginBottom: activeTab === tab.id ? '-1px' : '0',
               fontWeight: activeTab === tab.id ? 'bold' : 'normal',
@@ -141,7 +142,7 @@ export default function RetroSettingsContent({
       <div style={{
         flex: 1,
         padding: '8px',
-        background: '#d4d0c8',
+        background: 'var(--retro-btn-face)',
         border: '2px inset #808080',
         overflowY: 'auto',
       }}>

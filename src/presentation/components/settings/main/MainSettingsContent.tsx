@@ -632,7 +632,7 @@ function SettingToggle({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '16px',
-        background: 'rgba(255,255,255,0.05)',
+        background: 'var(--main-glass-bg)',
         borderRadius: '12px',
         opacity: disabled ? 0.5 : 1,
       }}
@@ -651,7 +651,7 @@ function SettingToggle({
           border: 'none',
           background: isEnabled
             ? 'linear-gradient(135deg, #a855f7, #3b82f6)'
-            : 'rgba(255,255,255,0.1)',
+            : 'var(--color-border)',
           cursor: disabled ? 'not-allowed' : 'pointer',
           position: 'relative',
           transition: 'background 0.2s ease',
@@ -735,7 +735,7 @@ function ThemeButton({
       style={{
         flex: 1,
         padding: '16px',
-        background: isActive ? 'linear-gradient(135deg, #a855f7, #3b82f6)' : 'rgba(255,255,255,0.05)',
+        background: isActive ? 'linear-gradient(135deg, #a855f7, #3b82f6)' : 'var(--main-glass-bg)',
         border: isActive ? 'none' : '1px solid var(--main-border)',
         borderRadius: '12px',
         cursor: 'pointer',
@@ -769,7 +769,7 @@ function LayoutButton({
       style={{
         flex: 1,
         padding: '16px',
-        background: isActive ? 'linear-gradient(135deg, #a855f7, #3b82f6)' : 'rgba(255,255,255,0.05)',
+        background: isActive ? 'linear-gradient(135deg, #a855f7, #3b82f6)' : 'var(--main-glass-bg)',
         border: isActive ? 'none' : '1px solid var(--main-border)',
         borderRadius: '12px',
         cursor: 'pointer',
@@ -801,7 +801,7 @@ function LanguageButton({
       style={{
         flex: 1,
         padding: '12px 24px',
-        background: isActive ? 'linear-gradient(135deg, #a855f7, #3b82f6)' : 'rgba(255,255,255,0.05)',
+        background: isActive ? 'linear-gradient(135deg, #a855f7, #3b82f6)' : 'var(--main-glass-bg)',
         border: isActive ? 'none' : '1px solid var(--main-border)',
         borderRadius: '12px',
         cursor: 'pointer',

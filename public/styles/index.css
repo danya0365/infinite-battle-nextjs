@@ -8,6 +8,7 @@
 @import "./main-layout.css";
 @import "./retro-layout.css";
 @import "./achievement.css";
+@import "./page-content.css";
 
 /* Global Reset for Full Screen */
 html,

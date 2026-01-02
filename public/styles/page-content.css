@@ -1,0 +1,332 @@
+/**
+ * Page Content Styles
+ * Common styles for all main page content components
+ * Proper dark mode support with CSS variables
+ */
+
+/* ===== Common Page Container ===== */
+.main-page-container {
+  @apply flex flex-col h-full p-6 gap-5 overflow-hidden;
+}
+
+.main-page-header {
+  @apply flex justify-between items-center;
+}
+
+.main-page-title {
+  @apply text-3xl font-bold;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main-page-title.gold {
+  background: linear-gradient(135deg, #ffd700, #ff6b00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main-page-title.blue {
+  background: linear-gradient(135deg, #a855f7, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main-page-subtitle {
+  @apply mt-1;
+  color: var(--color-muted);
+}
+
+/* ===== Glass Card ===== */
+.main-glass-card {
+  @apply rounded-2xl p-5;
+  background: var(--main-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--main-glass-border);
+}
+
+.main-glass-card-sm {
+  @apply rounded-xl p-4;
+  background: var(--main-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ===== Tabs Container ===== */
+.main-tabs {
+  @apply flex gap-2 p-2 rounded-2xl;
+  background: var(--main-glass-bg);
+  backdrop-filter: blur(10px);
+}
+
+.main-tab {
+  @apply flex-1 px-4 py-3 border-none rounded-xl cursor-pointer font-medium;
+  background: transparent;
+  color: var(--color-foreground);
+  transition: all 0.2s ease;
+}
+
+.main-tab:hover {
+  background: var(--main-glass-border);
+}
+
+.main-tab.active {
+  @apply font-bold;
+  background: linear-gradient(135deg, #a855f7, #3b82f6);
+  color: white;
+}
+
+.main-tab.active.gold {
+  background: linear-gradient(135deg, #ffd700, #ff6b00);
+  color: #000;
+}
+
+/* ===== Stats Card ===== */
+.main-stat-card {
+  @apply rounded-xl p-4 text-center;
+  background: var(--main-glass-bg);
+  backdrop-filter: blur(10px);
+}
+
+.main-stat-card-icon {
+  @apply text-2xl;
+}
+
+.main-stat-card-value {
+  @apply font-bold text-xl mt-2;
+  color: var(--color-foreground);
+}
+
+.main-stat-card-label {
+  @apply text-xs;
+  color: var(--color-muted);
+}
+
+/* ===== Table Styles ===== */
+.main-table {
+  @apply flex-1 rounded-2xl overflow-hidden flex flex-col;
+  background: var(--main-glass-bg);
+  backdrop-filter: blur(10px);
+}
+
+.main-table-header {
+  @apply px-5 py-4 font-bold text-sm;
+  border-bottom: 1px solid var(--main-glass-border);
+  color: var(--color-muted);
+}
+
+.main-table-row {
+  @apply px-5 py-4 items-center;
+  border-bottom: 1px solid var(--main-glass-border);
+  transition: background 0.2s ease;
+}
+
+.main-table-row:hover {
+  background: var(--main-glass-border);
+}
+
+/* ===== Setting Item ===== */
+.main-setting-item {
+  @apply flex justify-between items-center p-4 rounded-xl;
+  background: var(--main-glass-bg);
+}
+
+.main-setting-label {
+  @apply font-medium;
+  color: var(--color-foreground);
+}
+
+.main-setting-description {
+  @apply text-sm;
+  color: var(--color-muted);
+}
+
+/* ===== Toggle Switch ===== */
+.main-toggle {
+  @apply relative w-13 h-7 rounded-full border-none cursor-pointer;
+  transition: background 0.2s ease;
+}
+
+.main-toggle.off {
+  background: var(--color-border);
+}
+
+.main-toggle.on {
+  background: linear-gradient(135deg, #a855f7, #3b82f6);
+}
+
+.main-toggle-knob {
+  @apply absolute w-5.5 h-5.5 rounded-full bg-white;
+  top: 3px;
+  transition: left 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.main-toggle.off .main-toggle-knob {
+  left: 3px;
+}
+
+.main-toggle.on .main-toggle-knob {
+  left: 27px;
+}
+
+/* ===== Button Group ===== */
+.main-button-group {
+  @apply flex gap-3;
+}
+
+.main-option-button {
+  @apply flex-1 p-4 rounded-xl border cursor-pointer text-center;
+  background: var(--main-glass-bg);
+  border-color: var(--main-glass-border);
+  color: var(--color-foreground);
+  transition: all 0.2s ease;
+}
+
+.main-option-button.active {
+  @apply border-none font-bold;
+  background: linear-gradient(135deg, #a855f7, #3b82f6);
+  color: white;
+}
+
+/* ===== Highlight Card ===== */
+.main-highlight-card {
+  @apply rounded-2xl p-4 flex items-center gap-4;
+  background: var(--main-glass-bg);
+  border: 1px solid var(--main-glass-border);
+}
+
+/* ===== Reset/Ghost Button ===== */
+.main-ghost-button {
+  @apply px-4 py-2 rounded-lg text-sm cursor-pointer;
+  background: transparent;
+  border: 1px solid var(--main-glass-border);
+  color: var(--color-muted);
+  transition: all 0.2s ease;
+}
+
+.main-ghost-button:hover {
+  background: var(--main-glass-bg);
+  color: var(--color-foreground);
+}
+
+/* ===== Retro Page Styles ===== */
+.retro-page-container {
+  @apply flex flex-col h-full p-2 gap-2;
+}
+
+.retro-page-titlebar {
+  @apply flex justify-between items-center px-2 py-1 font-bold;
+  background: var(--retro-titlebar-active);
+  color: white;
+  font-size: 11px;
+}
+
+.retro-stats-bar {
+  @apply flex gap-2 p-1;
+  background: var(--retro-bg);
+  border: 2px inset #808080;
+  font-size: 11px;
+  color: var(--retro-text);
+}
+
+.retro-stats-bar-item {
+  @apply flex-1 text-center;
+}
+
+.retro-stats-bar-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--retro-border-medium);
+}
+
+/* ===== Retro Tabs ===== */
+.retro-tabs {
+  @apply flex;
+  border-bottom: 1px solid var(--retro-border-medium);
+}
+
+.retro-tab {
+  @apply px-4 py-1.5 cursor-pointer;
+  background: var(--retro-bg);
+  border: 2px outset var(--retro-btn-face);
+  border-bottom: none;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  font-size: 11px;
+  color: var(--retro-text);
+}
+
+.retro-tab.active {
+  @apply font-bold;
+  background: var(--retro-btn-face);
+  margin-bottom: -1px;
+}
+
+/* ===== Retro Table ===== */
+.retro-page-table {
+  @apply flex-1 flex flex-col overflow-hidden;
+  border: 2px inset #808080;
+}
+
+.retro-page-table-header {
+  @apply px-2 py-1 font-bold;
+  background: #000080;
+  color: white;
+  font-size: 11px;
+}
+
+.retro-page-table-body {
+  @apply flex-1 overflow-y-auto;
+  background: var(--retro-bg-light);
+}
+
+.dark .retro-page-table-body {
+  background: var(--retro-bg-dark);
+}
+
+.retro-page-table-row {
+  @apply px-2 py-1 items-center;
+  font-size: 11px;
+  color: var(--retro-text);
+  border-bottom: 1px solid var(--retro-border-medium);
+}
+
+.retro-page-table-row:nth-child(odd) {
+  background: var(--retro-bg-light);
+}
+
+.retro-page-table-row:nth-child(even) {
+  background: var(--retro-bg);
+}
+
+.dark .retro-page-table-row:nth-child(odd) {
+  background: var(--retro-bg);
+}
+
+.dark .retro-page-table-row:nth-child(even) {
+  background: var(--retro-bg-dark);
+}
+
+.retro-page-table-row:hover {
+  background: var(--retro-blue);
+  color: white;
+}
+
+/* ===== Retro Status Bar ===== */
+.retro-page-statusbar {
+  @apply flex gap-1 p-0.5;
+  background: var(--retro-bg);
+  border: 2px inset #808080;
+  font-size: 11px;
+  color: var(--retro-text);
+}
+
+.retro-page-statusbar-item {
+  @apply flex-1;
+}
+
+.retro-page-statusbar-item + .retro-page-statusbar-item {
+  @apply pl-1;
+  border-left: 1px solid var(--retro-border-medium);
+}

@@ -1,6 +1,7 @@
 /**
  * MainLeaderboardContent
  * Modern, premium leaderboard UI with glassmorphism and animations
+ * Uses CSS classes for proper dark/light mode support
  */
 
 'use client';
@@ -64,31 +65,14 @@ export default function MainLeaderboardContent({
 
   return (
     <animated.div style={fadeIn} className="main-content">
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        padding: '24px',
-        gap: '20px',
-        overflow: 'hidden',
-      }}>
+      <div className="main-page-container">
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="main-page-header">
           <div>
-            <h1 style={{
-              fontSize: '2rem',
-              fontWeight: 'bold',
-              background: 'linear-gradient(135deg, #ffd700, #ff6b00)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}>
-              🏆 Leaderboard
-            </h1>
-            <p style={{ color: 'var(--main-text-secondary)', marginTop: '4px' }}>
-              Compete with warriors from around the world
-            </p>
+            <h1 className="main-page-title gold">🏆 Leaderboard</h1>
+            <p className="main-page-subtitle">Compete with warriors from around the world</p>
           </div>
-          <div style={{ display: 'flex', gap: '12px' }}>
+          <div className="main-button-group">
             <MainButton
               variant="ghost"
               onClick={handleRefresh}
@@ -103,11 +87,7 @@ export default function MainLeaderboardContent({
         </div>
 
         {/* Stats Bar */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '16px',
-        }}>
+        <div className="grid grid-cols-4 gap-4">
           <StatCard icon="👥" label="Players" value={stats.totalPlayers.toString()} />
           <StatCard icon="⚔️" label="Matches" value={formatNumber(stats.totalMatches)} />
           <StatCard icon="📊" label="Avg Win Rate" value={`${stats.averageWinRate}%`} />
@@ -115,30 +95,12 @@ export default function MainLeaderboardContent({
         </div>
 
         {/* Type Tabs */}
-        <div style={{
-          display: 'flex',
-          gap: '8px',
-          background: 'var(--main-glass-bg)',
-          padding: '8px',
-          borderRadius: '16px',
-        }}>
+        <div className="main-tabs">
           {types.map((type) => (
             <button
               key={type}
               onClick={() => changeType(type)}
-              style={{
-                flex: 1,
-                padding: '12px',
-                background: currentType === type
-                  ? 'linear-gradient(135deg, #ffd700, #ff6b00)'
-                  : 'transparent',
-                border: 'none',
-                borderRadius: '12px',
-                cursor: 'pointer',
-                color: currentType === type ? '#000' : 'var(--main-text)',
-                fontWeight: currentType === type ? 'bold' : 'normal',
-                transition: 'all 0.2s ease',
-              }}
+              className={`main-tab ${currentType === type ? 'active gold' : ''}`}
             >
               {getTypeLabel(type)}
             </button>
@@ -147,33 +109,22 @@ export default function MainLeaderboardContent({
 
         {/* Current Player Rank */}
         {currentPlayerRank && (
-          <div style={{
-            background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(59, 130, 246, 0.2))',
-            border: '1px solid rgba(168, 85, 247, 0.3)',
-            borderRadius: '16px',
-            padding: '16px 20px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '16px',
-          }}>
-            <span style={{ fontSize: '24px' }}>📍</span>
-            <div style={{ flex: 1 }}>
-              <p style={{ fontSize: '0.875rem', color: 'var(--main-text-secondary)' }}>Your Rank</p>
-              <p style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>
+          <div className="main-highlight-card">
+            <span className="text-2xl">📍</span>
+            <div className="flex-1">
+              <p className="text-sm" style={{ color: 'var(--color-muted)' }}>Your Rank</p>
+              <p className="font-bold text-xl">
                 #{currentPlayerRank.rank} • {currentPlayerRank.displayName}
               </p>
             </div>
-            <div style={{ textAlign: 'right' }}>
-              <p style={{
-                padding: '4px 12px',
-                background: getRankTierGradient(currentPlayerRank.rankTier),
-                borderRadius: '20px',
-                fontWeight: 'bold',
-                fontSize: '0.875rem',
-              }}>
+            <div className="text-right">
+              <span 
+                className="px-3 py-1 rounded-full font-bold text-sm"
+                style={{ background: getRankTierGradient(currentPlayerRank.rankTier) }}
+              >
                 {currentPlayerRank.rankTier}
-              </p>
-              <p style={{ fontSize: '0.875rem', marginTop: '4px', color: 'var(--main-text-secondary)' }}>
+              </span>
+              <p className="text-sm mt-1" style={{ color: 'var(--color-muted)' }}>
                 {currentPlayerRank.rankPoints} RP
               </p>
             </div>
@@ -181,35 +132,22 @@ export default function MainLeaderboardContent({
         )}
 
         {/* Leaderboard Table */}
-        <div style={{
-          flex: 1,
-          background: 'var(--main-glass-bg)',
-          backdropFilter: 'blur(10px)',
-          borderRadius: '16px',
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column',
-        }}>
+        <div className="main-table">
           {/* Table Header */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '80px 1fr 100px 100px 100px 100px',
-            padding: '16px 20px',
-            borderBottom: '1px solid rgba(255,255,255,0.1)',
-            fontWeight: 'bold',
-            color: 'var(--main-text-secondary)',
-            fontSize: '0.875rem',
-          }}>
+          <div 
+            className="main-table-header grid"
+            style={{ gridTemplateColumns: '80px 1fr 100px 100px 100px 100px' }}
+          >
             <span>Rank</span>
             <span>Player</span>
-            <span style={{ textAlign: 'center' }}>Tier</span>
-            <span style={{ textAlign: 'center' }}>Points</span>
-            <span style={{ textAlign: 'center' }}>Win Rate</span>
-            <span style={{ textAlign: 'center' }}>Streak</span>
+            <span className="text-center">Tier</span>
+            <span className="text-center">Points</span>
+            <span className="text-center">Win Rate</span>
+            <span className="text-center">Streak</span>
           </div>
 
           {/* Table Body */}
-          <div style={{ flex: 1, overflowY: 'auto' }}>
+          <div className="flex-1 overflow-y-auto">
             {trail.map((style, index) => {
               const entry = entries[index];
               if (!entry) return null;
@@ -217,78 +155,61 @@ export default function MainLeaderboardContent({
               return (
                 <animated.div
                   key={entry.profileId}
-                  style={{
-                    ...style,
-                    display: 'grid',
-                    gridTemplateColumns: '80px 1fr 100px 100px 100px 100px',
-                    padding: '16px 20px',
-                    borderBottom: '1px solid rgba(255,255,255,0.05)',
-                    alignItems: 'center',
-                    background: entry.rank <= 3 
-                      ? `linear-gradient(90deg, ${getRankTierColor(entry.rankTier)}10, transparent)`
-                      : 'transparent',
-                    transition: 'background 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = entry.rank <= 3 
-                    ? `linear-gradient(90deg, ${getRankTierColor(entry.rankTier)}10, transparent)`
-                    : 'transparent'}
+                  style={style}
+                  className="main-table-row grid"
+                  data-rank={entry.rank}
                 >
-                  {/* Rank */}
-                  <span style={{
-                    fontSize: entry.rank <= 3 ? '1.5rem' : '1rem',
-                    fontWeight: 'bold',
-                  }}>
-                    {getRankMedal(entry.rank)}
-                  </span>
+                  <div style={{ gridTemplateColumns: '80px 1fr 100px 100px 100px 100px', display: 'grid', alignItems: 'center' }}>
+                    {/* Rank */}
+                    <span className={`font-bold ${entry.rank <= 3 ? 'text-2xl' : 'text-base'}`}>
+                      {getRankMedal(entry.rank)}
+                    </span>
 
-                  {/* Player */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <span style={{ fontSize: '1.5rem' }}>{entry.avatar}</span>
-                    <div>
-                      <p style={{ fontWeight: 'bold' }}>{entry.displayName}</p>
-                      <p style={{ fontSize: '0.75rem', color: 'var(--main-text-secondary)' }}>
-                        Lv. {entry.level} • {entry.wins}W / {entry.losses}L
-                      </p>
+                    {/* Player */}
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">{entry.avatar}</span>
+                      <div>
+                        <p className="font-bold">{entry.displayName}</p>
+                        <p className="text-xs" style={{ color: 'var(--color-muted)' }}>
+                          Lv. {entry.level} • {entry.wins}W / {entry.losses}L
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Tier */}
-                  <div style={{ textAlign: 'center' }}>
-                    <span style={{
-                      padding: '4px 12px',
-                      background: getRankTierGradient(entry.rankTier),
-                      borderRadius: '20px',
-                      fontWeight: 'bold',
-                      fontSize: '0.75rem',
-                      color: entry.rankTier === 'Gold' || entry.rankTier === 'Legend' ? '#000' : '#fff',
-                    }}>
-                      {entry.rankTier}
-                    </span>
-                  </div>
-
-                  {/* Points */}
-                  <div style={{ textAlign: 'center', fontWeight: 'bold', color: '#ffd700' }}>
-                    {formatNumber(entry.rankPoints)}
-                  </div>
-
-                  {/* Win Rate */}
-                  <div style={{ textAlign: 'center' }}>
-                    <span style={{
-                      color: entry.winRate >= 60 ? '#10b981' : entry.winRate >= 40 ? '#f59e0b' : '#ef4444',
-                      fontWeight: 'bold',
-                    }}>
-                      {entry.winRate}%
-                    </span>
-                  </div>
-
-                  {/* Streak */}
-                  <div style={{ textAlign: 'center' }}>
-                    {entry.winStreak > 0 && (
-                      <span style={{ color: '#ff6b00' }}>
-                        🔥 {entry.winStreak}
+                    {/* Tier */}
+                    <div className="text-center">
+                      <span 
+                        className="px-3 py-1 rounded-full font-bold text-xs"
+                        style={{ 
+                          background: getRankTierGradient(entry.rankTier),
+                          color: entry.rankTier === 'Gold' || entry.rankTier === 'Legend' ? '#000' : '#fff',
+                        }}
+                      >
+                        {entry.rankTier}
                       </span>
-                    )}
+                    </div>
+
+                    {/* Points */}
+                    <div className="text-center font-bold" style={{ color: '#ffd700' }}>
+                      {formatNumber(entry.rankPoints)}
+                    </div>
+
+                    {/* Win Rate */}
+                    <div className="text-center">
+                      <span 
+                        className="font-bold"
+                        style={{ color: entry.winRate >= 60 ? 'var(--color-success)' : entry.winRate >= 40 ? 'var(--color-warning)' : 'var(--color-error)' }}
+                      >
+                        {entry.winRate}%
+                      </span>
+                    </div>
+
+                    {/* Streak */}
+                    <div className="text-center">
+                      {entry.winStreak > 0 && (
+                        <span style={{ color: '#ff6b00' }}>🔥 {entry.winStreak}</span>
+                      )}
+                    </div>
                   </div>
                 </animated.div>
               );
@@ -298,43 +219,34 @@ export default function MainLeaderboardContent({
             {entries.slice(10).map((entry) => (
               <div
                 key={entry.profileId}
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '80px 1fr 100px 100px 100px 100px',
-                  padding: '16px 20px',
-                  borderBottom: '1px solid rgba(255,255,255,0.05)',
-                  alignItems: 'center',
-                }}
+                className="main-table-row"
               >
-                <span style={{ fontWeight: 'bold' }}>{getRankMedal(entry.rank)}</span>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span style={{ fontSize: '1.5rem' }}>{entry.avatar}</span>
-                  <div>
-                    <p style={{ fontWeight: 'bold' }}>{entry.displayName}</p>
-                    <p style={{ fontSize: '0.75rem', color: 'var(--main-text-secondary)' }}>
-                      Lv. {entry.level}
-                    </p>
+                <div style={{ gridTemplateColumns: '80px 1fr 100px 100px 100px 100px', display: 'grid', alignItems: 'center' }}>
+                  <span className="font-bold">{getRankMedal(entry.rank)}</span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">{entry.avatar}</span>
+                    <div>
+                      <p className="font-bold">{entry.displayName}</p>
+                      <p className="text-xs" style={{ color: 'var(--color-muted)' }}>Lv. {entry.level}</p>
+                    </div>
                   </div>
-                </div>
-                <div style={{ textAlign: 'center' }}>
-                  <span style={{
-                    padding: '4px 12px',
-                    background: getRankTierGradient(entry.rankTier),
-                    borderRadius: '20px',
-                    fontWeight: 'bold',
-                    fontSize: '0.75rem',
-                  }}>
-                    {entry.rankTier}
-                  </span>
-                </div>
-                <div style={{ textAlign: 'center', fontWeight: 'bold', color: '#ffd700' }}>
-                  {formatNumber(entry.rankPoints)}
-                </div>
-                <div style={{ textAlign: 'center', color: entry.winRate >= 60 ? '#10b981' : '#f59e0b', fontWeight: 'bold' }}>
-                  {entry.winRate}%
-                </div>
-                <div style={{ textAlign: 'center' }}>
-                  {entry.winStreak > 0 && <span style={{ color: '#ff6b00' }}>🔥 {entry.winStreak}</span>}
+                  <div className="text-center">
+                    <span 
+                      className="px-3 py-1 rounded-full font-bold text-xs"
+                      style={{ background: getRankTierGradient(entry.rankTier) }}
+                    >
+                      {entry.rankTier}
+                    </span>
+                  </div>
+                  <div className="text-center font-bold" style={{ color: '#ffd700' }}>
+                    {formatNumber(entry.rankPoints)}
+                  </div>
+                  <div className="text-center font-bold" style={{ color: entry.winRate >= 60 ? 'var(--color-success)' : 'var(--color-warning)' }}>
+                    {entry.winRate}%
+                  </div>
+                  <div className="text-center">
+                    {entry.winStreak > 0 && <span style={{ color: '#ff6b00' }}>🔥 {entry.winStreak}</span>}
+                  </div>
                 </div>
               </div>
             ))}
@@ -348,16 +260,10 @@ export default function MainLeaderboardContent({
 // Stat Card Component
 function StatCard({ icon, label, value }: { icon: string; label: string; value: string }) {
   return (
-    <div style={{
-      background: 'var(--main-glass-bg)',
-      backdropFilter: 'blur(10px)',
-      borderRadius: '12px',
-      padding: '16px',
-      textAlign: 'center',
-    }}>
-      <span style={{ fontSize: '24px' }}>{icon}</span>
-      <p style={{ fontWeight: 'bold', fontSize: '1.25rem', marginTop: '8px' }}>{value}</p>
-      <p style={{ fontSize: '0.75rem', color: 'var(--main-text-secondary)' }}>{label}</p>
+    <div className="main-stat-card">
+      <span className="main-stat-card-icon">{icon}</span>
+      <p className="main-stat-card-value">{value}</p>
+      <p className="main-stat-card-label">{label}</p>
     </div>
   );
 }

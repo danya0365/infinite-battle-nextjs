@@ -153,7 +153,7 @@ export default function RetroBattleContent({
             display: 'inline-block',
             width: '50px',
             height: '10px',
-            background: '#c0c0c0',
+            background: 'var(--retro-bg)',
             marginLeft: '8px',
             verticalAlign: 'middle',
           }}>
@@ -247,7 +247,7 @@ export default function RetroBattleContent({
         <div style={{ padding: '8px' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
-              <tr style={{ background: '#d4d0c8' }}>
+              <tr style={{ background: 'var(--retro-btn-face)' }}>
                 <th style={{ padding: '4px', border: '1px solid #888', width: '30px' }}>Sel</th>
                 <th style={{ padding: '4px', border: '1px solid #888' }}>Card</th>
                 <th style={{ padding: '4px', border: '1px solid #888' }}>Type</th>
@@ -344,7 +344,7 @@ export default function RetroBattleContent({
         <div style={{ padding: '8px', maxHeight: '300px', overflow: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11px' }}>
             <thead>
-              <tr style={{ background: '#d4d0c8' }}>
+              <tr style={{ background: 'var(--retro-btn-face)' }}>
                 <th style={{ padding: '4px', border: '1px solid #888' }}>Turn</th>
                 <th style={{ padding: '4px', border: '1px solid #888' }}>Actor</th>
                 <th style={{ padding: '4px', border: '1px solid #888' }}>Action</th>
@@ -469,7 +469,7 @@ function RetroCharacterDisplay({
                 <div style={{
                   flex: 1,
                   height: '16px',
-                  background: '#c0c0c0',
+                  background: 'var(--retro-bg)',
                   border: '2px inset #808080',
                 }}>
                   <div style={{
@@ -492,7 +492,7 @@ function RetroCharacterDisplay({
                 <div style={{
                   flex: 1,
                   height: '12px',
-                  background: '#c0c0c0',
+                  background: 'var(--retro-bg)',
                   border: '2px inset #808080',
                 }}>
                   <div style={{
