@@ -1,0 +1,445 @@
+/**
+ * Achievement Page Styles
+ * Modern and Retro achievement components with proper dark mode support
+ */
+
+/* ===== Main Achievement Layout ===== */
+.main-achievement-container {
+  @apply flex flex-col h-full p-6 gap-5 overflow-hidden;
+}
+
+.main-achievement-header {
+  @apply flex justify-between items-center;
+}
+
+.main-achievement-title {
+  @apply text-3xl font-bold;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main-achievement-subtitle {
+  @apply mt-1;
+  color: var(--color-muted);
+}
+
+/* ===== Progress Overview Card ===== */
+.main-achievement-progress {
+  @apply rounded-2xl p-5;
+  background: var(--main-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--main-glass-border);
+}
+
+.main-achievement-progress-header {
+  @apply flex justify-between items-center mb-3;
+}
+
+.main-achievement-progress-label {
+  @apply font-bold;
+  color: var(--color-foreground);
+}
+
+.main-achievement-progress-value {
+  @apply font-bold;
+  color: #a855f7;
+}
+
+.main-achievement-progress-bar {
+  @apply h-3 rounded-md overflow-hidden;
+  background: var(--color-border);
+}
+
+.main-achievement-progress-fill {
+  @apply h-full rounded-md;
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+  transition: width 1s ease;
+}
+
+/* ===== Stats Grid ===== */
+.main-achievement-stats {
+  @apply grid grid-cols-5 gap-3 mt-4;
+}
+
+.main-achievement-stat {
+  @apply text-center;
+}
+
+.main-achievement-stat-icon {
+  @apply text-xl;
+}
+
+.main-achievement-stat-text {
+  @apply text-xs mt-1;
+  color: var(--color-muted);
+}
+
+/* ===== Category Tabs ===== */
+.main-achievement-tabs {
+  @apply flex gap-2 flex-wrap;
+}
+
+.main-achievement-tab {
+  @apply px-4 py-2 border-none rounded-full cursor-pointer font-medium;
+  background: var(--main-glass-bg);
+  color: var(--color-foreground);
+  transition: all 0.2s ease;
+}
+
+.main-achievement-tab:hover {
+  background: var(--main-glass-border);
+}
+
+.main-achievement-tab.active {
+  @apply font-bold;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: white;
+}
+
+/* ===== Achievement Grid ===== */
+.main-achievement-grid {
+  @apply flex-1 overflow-y-auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  align-content: start;
+}
+
+/* ===== Achievement Card ===== */
+.main-achievement-card {
+  @apply flex items-center gap-4 p-4 rounded-xl border-none cursor-pointer text-left;
+  background: var(--main-glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--main-glass-border);
+  transition: all 0.2s ease;
+}
+
+.main-achievement-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-border-dark);
+}
+
+.main-achievement-card.locked {
+  @apply opacity-60;
+  background: var(--color-surface);
+}
+
+.main-achievement-card-icon {
+  @apply w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0;
+}
+
+.main-achievement-card-icon.locked {
+  background: var(--color-border);
+}
+
+.main-achievement-card-content {
+  @apply flex-1 min-w-0;
+}
+
+.main-achievement-card-header {
+  @apply flex items-center gap-2;
+}
+
+.main-achievement-card-name {
+  @apply font-bold truncate;
+  color: var(--color-foreground);
+}
+
+.main-achievement-card-check {
+  color: #10b981;
+}
+
+.main-achievement-card-description {
+  @apply text-xs truncate;
+  color: var(--color-muted);
+}
+
+.main-achievement-card-progress {
+  @apply mt-2 h-1 rounded overflow-hidden;
+  background: var(--color-border);
+}
+
+.main-achievement-card-progress-fill {
+  @apply h-full;
+}
+
+.main-achievement-card-points {
+  @apply px-2 py-1 rounded-lg text-xs font-bold shrink-0;
+  background: var(--main-glass-bg);
+  color: var(--color-foreground);
+}
+
+/* ===== Modal Content ===== */
+.main-achievement-modal {
+  @apply p-6 text-center;
+}
+
+.main-achievement-modal-icon {
+  @apply w-20 h-20 mx-auto rounded-full flex items-center justify-center text-4xl;
+}
+
+.main-achievement-modal-icon.locked {
+  @apply opacity-50;
+}
+
+.main-achievement-modal-name {
+  @apply mt-4 text-xl font-bold;
+  color: var(--color-foreground);
+}
+
+.main-achievement-modal-rarity {
+  @apply inline-block px-3 py-1 mt-2 rounded-full text-xs font-bold;
+  color: white;
+}
+
+.main-achievement-modal-description {
+  @apply mt-4;
+  color: var(--color-muted);
+}
+
+.main-achievement-modal-progress {
+  @apply mt-6;
+}
+
+.main-achievement-modal-progress-header {
+  @apply flex justify-between mb-2;
+  color: var(--color-foreground);
+}
+
+.main-achievement-modal-progress-bar {
+  @apply h-2 rounded overflow-hidden;
+  background: var(--color-border);
+}
+
+.main-achievement-modal-reward {
+  @apply mt-6 p-3 rounded-xl;
+  background: var(--main-glass-bg);
+}
+
+.main-achievement-modal-reward-label {
+  @apply text-sm;
+  color: var(--color-muted);
+}
+
+.main-achievement-modal-reward-value {
+  @apply font-bold mt-1;
+  color: var(--color-foreground);
+}
+
+.main-achievement-modal-unlocked {
+  @apply mt-4 text-sm;
+  color: var(--color-success);
+}
+
+/* ===== Retro Achievement Layout ===== */
+.retro-achievement-container {
+  @apply flex flex-col h-full p-2 gap-2;
+}
+
+.retro-achievement-titlebar {
+  @apply flex justify-between items-center px-2 py-1 font-bold;
+  background: var(--retro-titlebar-active);
+  color: white;
+  font-size: 11px;
+}
+
+/* ===== Retro Stats ===== */
+.retro-achievement-stats {
+  @apply grid grid-cols-4 gap-2 p-2;
+}
+
+.retro-achievement-stat {
+  @apply text-center;
+  color: var(--retro-text);
+}
+
+.retro-achievement-stat strong {
+  @apply block;
+}
+
+.retro-achievement-stat-label {
+  font-size: 10px;
+  color: var(--retro-text);
+}
+
+.retro-achievement-progress {
+  @apply mx-2 mb-2 p-0.5;
+  border: 2px inset #808080;
+}
+
+.retro-achievement-progress-fill {
+  @apply h-4;
+  background: linear-gradient(180deg, #0000ff 0%, #000080 100%);
+}
+
+/* ===== Retro Tabs ===== */
+.retro-achievement-tabs {
+  @apply flex;
+  border-bottom: 1px solid var(--retro-border-medium);
+}
+
+.retro-achievement-tab {
+  @apply px-3 py-1 cursor-pointer;
+  background: var(--retro-bg);
+  border: 2px outset var(--retro-btn-face);
+  border-bottom: none;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  font-size: 11px;
+  color: var(--retro-text);
+}
+
+.retro-achievement-tab.active {
+  @apply font-bold;
+  background: var(--retro-btn-face);
+}
+
+/* ===== Retro Achievement List ===== */
+.retro-achievement-list {
+  @apply flex-1 overflow-auto p-2;
+  border: 2px inset #808080;
+  background: var(--retro-bg-light);
+}
+
+.dark .retro-achievement-list {
+  background: var(--retro-bg-dark);
+}
+
+.retro-achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 4px;
+}
+
+/* ===== Retro Achievement Item ===== */
+.retro-achievement-item {
+  @apply flex items-center gap-2 p-2 cursor-pointer;
+  background: var(--retro-bg-light);
+  border: 1px solid var(--retro-border-medium);
+}
+
+.dark .retro-achievement-item {
+  background: var(--retro-bg);
+}
+
+.retro-achievement-item.unlocked {
+  background: #ffffcc;
+}
+
+.dark .retro-achievement-item.unlocked {
+  background: #4a4a00;
+}
+
+.retro-achievement-item:hover {
+  background: var(--retro-blue);
+  color: white;
+}
+
+.retro-achievement-item-icon {
+  @apply text-2xl;
+}
+
+.retro-achievement-item-icon.locked {
+  filter: grayscale(1);
+}
+
+.retro-achievement-item-content {
+  @apply flex-1 min-w-0;
+}
+
+.retro-achievement-item-name {
+  @apply font-bold truncate;
+  font-size: 11px;
+  color: var(--retro-text);
+}
+
+.retro-achievement-item:hover .retro-achievement-item-name {
+  color: white;
+}
+
+.retro-achievement-item-status {
+  font-size: 10px;
+  color: var(--retro-text-disabled);
+}
+
+.retro-achievement-item:hover .retro-achievement-item-status {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.retro-achievement-item-points {
+  @apply px-1.5 py-0.5 font-bold;
+  font-size: 9px;
+  color: white;
+}
+
+/* ===== Retro Status Bar ===== */
+.retro-achievement-statusbar {
+  @apply flex gap-1 p-0.5;
+  background: var(--retro-bg);
+  border: 2px inset #808080;
+  font-size: 11px;
+  color: var(--retro-text);
+}
+
+.retro-achievement-statusbar-section {
+  @apply flex-1;
+}
+
+.retro-achievement-statusbar-section:last-child {
+  @apply pl-1;
+  border-left: 1px solid var(--retro-border-medium);
+}
+
+/* ===== Retro Modal Content ===== */
+.retro-achievement-modal {
+  @apply p-4;
+}
+
+.retro-achievement-modal-header {
+  @apply flex gap-4 items-start;
+}
+
+.retro-achievement-modal-icon {
+  @apply text-5xl;
+}
+
+.retro-achievement-modal-icon.locked {
+  filter: grayscale(1);
+}
+
+.retro-achievement-modal-info {
+  @apply flex-1;
+}
+
+.retro-achievement-modal-name {
+  @apply font-bold;
+  font-size: 14px;
+  color: var(--retro-text);
+}
+
+.retro-achievement-modal-rarity {
+  @apply inline-block px-2 py-0.5 mt-1;
+  font-size: 10px;
+  color: white;
+}
+
+.retro-achievement-modal-description {
+  @apply mt-3;
+  font-size: 12px;
+  color: var(--retro-text);
+}
+
+.retro-achievement-modal-unlocked {
+  @apply mt-3;
+  font-size: 11px;
+  color: #008000;
+}
+
+.dark .retro-achievement-modal-unlocked {
+  color: #90ee90;
+}
+
+.retro-achievement-modal-footer {
+  @apply mt-4 text-right;
+}

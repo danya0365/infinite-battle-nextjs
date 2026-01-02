@@ -1,6 +1,7 @@
 /**
  * MainAchievementContent
  * Modern achievement gallery with glassmorphism and animations
+ * Uses CSS classes for proper dark/light mode support
  */
 
 'use client';
@@ -52,7 +53,6 @@ export default function MainAchievementContent({
   });
 
   const categories: AchievementCategory[] = ['battle', 'collection', 'social', 'mastery', 'special'];
-  const rarities: AchievementRarity[] = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
 
   const handleCategoryFilter = (category: AchievementCategory | null) => {
     setActiveCategory(category);
@@ -61,27 +61,12 @@ export default function MainAchievementContent({
 
   return (
     <animated.div style={fadeIn} className="main-content">
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        padding: '24px',
-        gap: '20px',
-        overflow: 'hidden',
-      }}>
+      <div className="main-achievement-container">
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="main-achievement-header">
           <div>
-            <h1 style={{
-              fontSize: '2rem',
-              fontWeight: 'bold',
-              background: 'linear-gradient(135deg, #a855f7, #ec4899)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}>
-              🏆 Achievements
-            </h1>
-            <p style={{ color: 'var(--main-text-secondary)', marginTop: '4px' }}>
+            <h1 className="main-achievement-title">🏆 Achievements</h1>
+            <p className="main-achievement-subtitle">
               {stats.unlockedCount} / {stats.totalAchievements} unlocked • {stats.earnedPoints} pts
             </p>
           </div>
@@ -91,42 +76,24 @@ export default function MainAchievementContent({
         </div>
 
         {/* Progress Overview */}
-        <div style={{
-          background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2))',
-          border: '1px solid rgba(168, 85, 247, 0.3)',
-          borderRadius: '16px',
-          padding: '20px',
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
-            <span style={{ fontWeight: 'bold' }}>Overall Progress</span>
-            <span style={{ color: '#a855f7', fontWeight: 'bold' }}>{stats.completionPercent}%</span>
+        <div className="main-achievement-progress">
+          <div className="main-achievement-progress-header">
+            <span className="main-achievement-progress-label">Overall Progress</span>
+            <span className="main-achievement-progress-value">{stats.completionPercent}%</span>
           </div>
-          <div style={{
-            height: '12px',
-            background: 'rgba(0,0,0,0.3)',
-            borderRadius: '6px',
-            overflow: 'hidden',
-          }}>
-            <div style={{
-              width: `${stats.completionPercent}%`,
-              height: '100%',
-              background: 'linear-gradient(90deg, #a855f7, #ec4899)',
-              borderRadius: '6px',
-              transition: 'width 1s ease',
-            }} />
+          <div className="main-achievement-progress-bar">
+            <div 
+              className="main-achievement-progress-fill"
+              style={{ width: `${stats.completionPercent}%` }}
+            />
           </div>
 
           {/* Stats Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(5, 1fr)',
-            gap: '12px',
-            marginTop: '16px',
-          }}>
+          <div className="main-achievement-stats">
             {categories.map((cat) => (
-              <div key={cat} style={{ textAlign: 'center' }}>
-                <span style={{ fontSize: '20px' }}>{presenter.getCategoryIcon(cat)}</span>
-                <p style={{ fontSize: '0.75rem', marginTop: '4px' }}>
+              <div key={cat} className="main-achievement-stat">
+                <span className="main-achievement-stat-icon">{presenter.getCategoryIcon(cat)}</span>
+                <p className="main-achievement-stat-text">
                   {stats.byCategory[cat]?.unlocked || 0}/{stats.byCategory[cat]?.total || 0}
                 </p>
               </div>
@@ -135,22 +102,10 @@ export default function MainAchievementContent({
         </div>
 
         {/* Category Tabs */}
-        <div style={{
-          display: 'flex',
-          gap: '8px',
-          flexWrap: 'wrap',
-        }}>
+        <div className="main-achievement-tabs">
           <button
             onClick={() => handleCategoryFilter(null)}
-            style={{
-              padding: '8px 16px',
-              background: !activeCategory ? 'linear-gradient(135deg, #a855f7, #ec4899)' : 'var(--main-glass-bg)',
-              border: 'none',
-              borderRadius: '20px',
-              cursor: 'pointer',
-              color: 'var(--main-text)',
-              fontWeight: !activeCategory ? 'bold' : 'normal',
-            }}
+            className={`main-achievement-tab ${!activeCategory ? 'active' : ''}`}
           >
             All
           </button>
@@ -158,15 +113,7 @@ export default function MainAchievementContent({
             <button
               key={cat}
               onClick={() => handleCategoryFilter(cat)}
-              style={{
-                padding: '8px 16px',
-                background: activeCategory === cat ? 'linear-gradient(135deg, #a855f7, #ec4899)' : 'var(--main-glass-bg)',
-                border: 'none',
-                borderRadius: '20px',
-                cursor: 'pointer',
-                color: 'var(--main-text)',
-                fontWeight: activeCategory === cat ? 'bold' : 'normal',
-              }}
+              className={`main-achievement-tab ${activeCategory === cat ? 'active' : ''}`}
             >
               {presenter.getCategoryIcon(cat)} {presenter.getCategoryLabel(cat)}
             </button>
@@ -174,14 +121,7 @@ export default function MainAchievementContent({
         </div>
 
         {/* Achievements Grid */}
-        <div style={{
-          flex: 1,
-          overflowY: 'auto',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: '16px',
-          alignContent: 'start',
-        }}>
+        <div className="main-achievement-grid">
           {achievements.map((achievement) => (
             <AchievementCard
               key={achievement.id}
@@ -200,76 +140,55 @@ export default function MainAchievementContent({
         title={selectedAchievement?.name || 'Achievement'}
       >
         {selectedAchievement && (
-          <div style={{ padding: '24px', textAlign: 'center' }}>
-            <div style={{
-              width: '80px',
-              height: '80px',
-              margin: '0 auto',
-              borderRadius: '50%',
-              background: presenter.getRarityGradient(selectedAchievement.rarity),
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '40px',
-              opacity: selectedAchievement.isUnlocked ? 1 : 0.5,
-            }}>
+          <div className="main-achievement-modal">
+            <div 
+              className={`main-achievement-modal-icon ${!selectedAchievement.isUnlocked ? 'locked' : ''}`}
+              style={{ background: presenter.getRarityGradient(selectedAchievement.rarity) }}
+            >
               {selectedAchievement.icon}
             </div>
 
-            <h2 style={{ marginTop: '16px' }}>{selectedAchievement.name}</h2>
-            <p style={{
-              display: 'inline-block',
-              padding: '4px 12px',
-              marginTop: '8px',
-              background: presenter.getRarityGradient(selectedAchievement.rarity),
-              borderRadius: '20px',
-              fontSize: '0.75rem',
-              fontWeight: 'bold',
-            }}>
+            <h2 className="main-achievement-modal-name">{selectedAchievement.name}</h2>
+            <span 
+              className="main-achievement-modal-rarity"
+              style={{ background: presenter.getRarityGradient(selectedAchievement.rarity) }}
+            >
               {presenter.getRarityLabel(selectedAchievement.rarity)}
-            </p>
+            </span>
 
-            <p style={{ marginTop: '16px', color: 'var(--main-text-secondary)' }}>
+            <p className="main-achievement-modal-description">
               {selectedAchievement.description}
             </p>
 
             {/* Progress */}
-            <div style={{ marginTop: '24px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+            <div className="main-achievement-modal-progress">
+              <div className="main-achievement-modal-progress-header">
                 <span>Progress</span>
                 <span>{presenter.formatProgress(selectedAchievement.userProgress, selectedAchievement.maxProgress)}</span>
               </div>
-              <div style={{
-                height: '8px',
-                background: 'rgba(255,255,255,0.1)',
-                borderRadius: '4px',
-                overflow: 'hidden',
-              }}>
-                <div style={{
-                  width: `${selectedAchievement.progressPercent}%`,
-                  height: '100%',
-                  background: presenter.getRarityGradient(selectedAchievement.rarity),
-                }} />
+              <div className="main-achievement-modal-progress-bar">
+                <div 
+                  style={{
+                    width: `${selectedAchievement.progressPercent}%`,
+                    height: '100%',
+                    background: presenter.getRarityGradient(selectedAchievement.rarity),
+                  }}
+                />
               </div>
             </div>
 
             {/* Reward */}
             {selectedAchievement.reward && (
-              <div style={{
-                marginTop: '24px',
-                padding: '12px',
-                background: 'rgba(255,255,255,0.05)',
-                borderRadius: '12px',
-              }}>
-                <p style={{ color: 'var(--main-text-secondary)', fontSize: '0.875rem' }}>Reward</p>
-                <p style={{ fontWeight: 'bold', marginTop: '4px' }}>
+              <div className="main-achievement-modal-reward">
+                <p className="main-achievement-modal-reward-label">Reward</p>
+                <p className="main-achievement-modal-reward-value">
                   {presenter.getRewardLabel(selectedAchievement.reward)}
                 </p>
               </div>
             )}
 
             {selectedAchievement.isUnlocked && selectedAchievement.unlockedAt && (
-              <p style={{ marginTop: '16px', fontSize: '0.875rem', color: 'var(--main-text-secondary)' }}>
+              <p className="main-achievement-modal-unlocked">
                 ✅ Unlocked on {new Date(selectedAchievement.unlockedAt).toLocaleDateString()}
               </p>
             )}
@@ -301,90 +220,44 @@ function AchievementCard({
   return (
     <button
       onClick={onClick}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '16px',
-        padding: '16px',
-        background: achievement.isUnlocked
-          ? 'var(--main-glass-bg)'
-          : 'rgba(255,255,255,0.02)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '12px',
-        border: `1px solid ${achievement.isUnlocked ? presenter.getRarityColor(achievement.rarity) + '40' : 'rgba(255,255,255,0.05)'}`,
-        cursor: 'pointer',
-        textAlign: 'left',
-        transition: 'all 0.2s ease',
-        opacity: achievement.isUnlocked ? 1 : 0.6,
-      }}
+      className={`main-achievement-card ${!achievement.isUnlocked ? 'locked' : ''}`}
     >
       {/* Icon */}
-      <div style={{
-        width: '48px',
-        height: '48px',
-        borderRadius: '12px',
-        background: achievement.isUnlocked
-          ? presenter.getRarityGradient(achievement.rarity)
-          : 'rgba(255,255,255,0.1)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '24px',
-        flexShrink: 0,
-      }}>
+      <div 
+        className={`main-achievement-card-icon ${!achievement.isUnlocked ? 'locked' : ''}`}
+        style={{
+          background: achievement.isUnlocked 
+            ? presenter.getRarityGradient(achievement.rarity) 
+            : undefined,
+        }}
+      >
         {achievement.isUnlocked ? achievement.icon : '🔒'}
       </div>
 
       {/* Content */}
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <p style={{
-            fontWeight: 'bold',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-          }}>
-            {achievement.name}
-          </p>
-          {achievement.isUnlocked && <span style={{ color: '#10b981' }}>✓</span>}
+      <div className="main-achievement-card-content">
+        <div className="main-achievement-card-header">
+          <p className="main-achievement-card-name">{achievement.name}</p>
+          {achievement.isUnlocked && <span className="main-achievement-card-check">✓</span>}
         </div>
-        <p style={{
-          fontSize: '0.75rem',
-          color: 'var(--main-text-secondary)',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-        }}>
-          {achievement.description}
-        </p>
+        <p className="main-achievement-card-description">{achievement.description}</p>
 
         {/* Progress Bar */}
         {!achievement.isUnlocked && (
-          <div style={{
-            marginTop: '8px',
-            height: '4px',
-            background: 'rgba(255,255,255,0.1)',
-            borderRadius: '2px',
-            overflow: 'hidden',
-          }}>
-            <div style={{
-              width: `${achievement.progressPercent}%`,
-              height: '100%',
-              background: presenter.getRarityColor(achievement.rarity),
-            }} />
+          <div className="main-achievement-card-progress">
+            <div 
+              className="main-achievement-card-progress-fill"
+              style={{
+                width: `${achievement.progressPercent}%`,
+                background: presenter.getRarityColor(achievement.rarity),
+              }}
+            />
           </div>
         )}
       </div>
 
       {/* Points */}
-      <div style={{
-        padding: '4px 8px',
-        background: 'rgba(255,255,255,0.1)',
-        borderRadius: '8px',
-        fontSize: '0.75rem',
-        fontWeight: 'bold',
-        flexShrink: 0,
-      }}>
+      <div className="main-achievement-card-points">
         {achievement.points} pts
       </div>
     </button>

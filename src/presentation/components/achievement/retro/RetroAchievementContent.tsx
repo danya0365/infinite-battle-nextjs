@@ -1,6 +1,7 @@
 /**
  * RetroAchievementContent
  * Windows 98 / IE5 style achievement gallery
+ * Uses CSS classes for proper dark/light mode support
  */
 
 'use client';
@@ -47,23 +48,9 @@ export default function RetroAchievementContent({
   };
 
   return (
-    <div className="retro-content-inner" style={{
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      padding: '8px',
-      gap: '8px',
-    }}>
+    <div className="retro-content-inner retro-achievement-container">
       {/* Title Bar */}
-      <div style={{
-        background: 'var(--retro-title-bar)',
-        color: 'white',
-        padding: '4px 8px',
-        fontWeight: 'bold',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-      }}>
+      <div className="retro-achievement-titlebar">
         <span>🏆 Achievements Gallery</span>
         <Link href="/">
           <RetroButton>← Back</RetroButton>
@@ -72,58 +59,39 @@ export default function RetroAchievementContent({
 
       {/* Stats Bar */}
       <RetroGroupBox label="📊 Statistics">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '8px',
-          padding: '8px',
-        }}>
-          <div style={{ textAlign: 'center' }}>
+        <div className="retro-achievement-stats">
+          <div className="retro-achievement-stat">
             <strong>{stats.unlockedCount}</strong>
-            <div style={{ fontSize: '10px' }}>Unlocked</div>
+            <div className="retro-achievement-stat-label">Unlocked</div>
           </div>
-          <div style={{ textAlign: 'center' }}>
+          <div className="retro-achievement-stat">
             <strong>{stats.totalAchievements}</strong>
-            <div style={{ fontSize: '10px' }}>Total</div>
+            <div className="retro-achievement-stat-label">Total</div>
           </div>
-          <div style={{ textAlign: 'center' }}>
+          <div className="retro-achievement-stat">
             <strong>{stats.earnedPoints}</strong>
-            <div style={{ fontSize: '10px' }}>Points</div>
+            <div className="retro-achievement-stat-label">Points</div>
           </div>
-          <div style={{ textAlign: 'center' }}>
+          <div className="retro-achievement-stat">
             <strong>{stats.completionPercent}%</strong>
-            <div style={{ fontSize: '10px' }}>Complete</div>
+            <div className="retro-achievement-stat-label">Complete</div>
           </div>
         </div>
 
         {/* Progress Bar */}
-        <div style={{
-          margin: '0 8px 8px',
-          border: '2px inset #808080',
-          padding: '2px',
-        }}>
-          <div style={{
-            width: `${stats.completionPercent}%`,
-            height: '16px',
-            background: 'linear-gradient(180deg, #0000ff 0%, #000080 100%)',
-          }} />
+        <div className="retro-achievement-progress">
+          <div 
+            className="retro-achievement-progress-fill"
+            style={{ width: `${stats.completionPercent}%` }}
+          />
         </div>
       </RetroGroupBox>
 
       {/* Category Tabs */}
-      <div style={{ display: 'flex', borderBottom: '1px solid #808080' }}>
+      <div className="retro-achievement-tabs">
         <button
           onClick={() => handleCategoryFilter(null)}
-          style={{
-            padding: '4px 12px',
-            background: !activeCategory ? '#d4d0c8' : '#c0c0c0',
-            border: '2px outset #d4d0c8',
-            borderBottom: !activeCategory ? 'none' : '2px outset #d4d0c8',
-            cursor: 'pointer',
-            fontFamily: '"MS Sans Serif", Tahoma, sans-serif',
-            fontSize: '11px',
-            fontWeight: !activeCategory ? 'bold' : 'normal',
-          }}
+          className={`retro-achievement-tab ${!activeCategory ? 'active' : ''}`}
         >
           All ({stats.totalAchievements})
         </button>
@@ -131,16 +99,7 @@ export default function RetroAchievementContent({
           <button
             key={cat}
             onClick={() => handleCategoryFilter(cat)}
-            style={{
-              padding: '4px 12px',
-              background: activeCategory === cat ? '#d4d0c8' : '#c0c0c0',
-              border: '2px outset #d4d0c8',
-              borderBottom: activeCategory === cat ? 'none' : '2px outset #d4d0c8',
-              cursor: 'pointer',
-              fontFamily: '"MS Sans Serif", Tahoma, sans-serif',
-              fontSize: '11px',
-              fontWeight: activeCategory === cat ? 'bold' : 'normal',
-            }}
+            className={`retro-achievement-tab ${activeCategory === cat ? 'active' : ''}`}
           >
             {presenter.getCategoryIcon(cat)} {presenter.getCategoryLabel(cat)}
           </button>
@@ -148,60 +107,29 @@ export default function RetroAchievementContent({
       </div>
 
       {/* Achievement List */}
-      <div style={{
-        flex: 1,
-        border: '2px inset #808080',
-        background: 'white',
-        overflow: 'auto',
-      }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-          gap: '4px',
-          padding: '8px',
-        }}>
+      <div className="retro-achievement-list">
+        <div className="retro-achievement-grid">
           {achievements.map((achievement) => (
             <div
               key={achievement.id}
               onClick={() => setSelectedAchievement(achievement)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '8px',
-                background: achievement.isUnlocked ? '#ffffcc' : '#f0f0f0',
-                border: '1px solid #808080',
-                cursor: 'pointer',
-                opacity: achievement.isUnlocked ? 1 : 0.7,
-              }}
+              className={`retro-achievement-item ${achievement.isUnlocked ? 'unlocked' : ''}`}
             >
-              <span style={{
-                fontSize: '24px',
-                filter: achievement.isUnlocked ? 'none' : 'grayscale(1)',
-              }}>
+              <span className={`retro-achievement-item-icon ${!achievement.isUnlocked ? 'locked' : ''}`}>
                 {achievement.isUnlocked ? achievement.icon : '🔒'}
               </span>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{
-                  fontWeight: 'bold',
-                  fontSize: '11px',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                }}>
+              <div className="retro-achievement-item-content">
+                <div className="retro-achievement-item-name">
                   {achievement.name}
                 </div>
-                <div style={{ fontSize: '10px', color: '#666' }}>
+                <div className="retro-achievement-item-status">
                   {achievement.isUnlocked ? '✓ Unlocked' : `${achievement.progressPercent}%`}
                 </div>
               </div>
-              <div style={{
-                padding: '2px 6px',
-                background: presenter.getRarityColor(achievement.rarity),
-                color: 'white',
-                fontSize: '9px',
-                fontWeight: 'bold',
-              }}>
+              <div 
+                className="retro-achievement-item-points"
+                style={{ background: presenter.getRarityColor(achievement.rarity) }}
+              >
                 {achievement.points}
               </div>
             </div>
@@ -210,16 +138,11 @@ export default function RetroAchievementContent({
       </div>
 
       {/* Status Bar */}
-      <div style={{
-        display: 'flex',
-        gap: '4px',
-        background: '#c0c0c0',
-        border: '2px inset #808080',
-        padding: '2px 4px',
-        fontSize: '11px',
-      }}>
-        <span style={{ flex: 2 }}>Showing {achievements.length} achievements</span>
-        <span style={{ flex: 1, borderLeft: '1px solid #808080', paddingLeft: '4px' }}>
+      <div className="retro-achievement-statusbar">
+        <span className="retro-achievement-statusbar-section">
+          Showing {achievements.length} achievements
+        </span>
+        <span className="retro-achievement-statusbar-section">
           {stats.earnedPoints} / {stats.totalPoints} total points
         </span>
       </div>
@@ -231,32 +154,25 @@ export default function RetroAchievementContent({
         title={selectedAchievement?.name || 'Achievement'}
       >
         {selectedAchievement && (
-          <div style={{ padding: '16px' }}>
-            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-              <span style={{
-                fontSize: '48px',
-                filter: selectedAchievement.isUnlocked ? 'none' : 'grayscale(1)',
-              }}>
+          <div className="retro-achievement-modal">
+            <div className="retro-achievement-modal-header">
+              <span className={`retro-achievement-modal-icon ${!selectedAchievement.isUnlocked ? 'locked' : ''}`}>
                 {selectedAchievement.icon}
               </span>
-              <div>
-                <p style={{ fontWeight: 'bold', fontSize: '14px' }}>
+              <div className="retro-achievement-modal-info">
+                <p className="retro-achievement-modal-name">
                   {selectedAchievement.name}
                 </p>
-                <p style={{
-                  display: 'inline-block',
-                  padding: '2px 8px',
-                  marginTop: '4px',
-                  background: presenter.getRarityColor(selectedAchievement.rarity),
-                  color: 'white',
-                  fontSize: '10px',
-                }}>
+                <span 
+                  className="retro-achievement-modal-rarity"
+                  style={{ background: presenter.getRarityColor(selectedAchievement.rarity) }}
+                >
                   {presenter.getRarityLabel(selectedAchievement.rarity)} • {selectedAchievement.points} pts
-                </p>
+                </span>
               </div>
             </div>
 
-            <p style={{ marginTop: '12px', fontSize: '12px' }}>
+            <p className="retro-achievement-modal-description">
               {selectedAchievement.description}
             </p>
 
@@ -266,12 +182,15 @@ export default function RetroAchievementContent({
                   <span>{presenter.formatProgress(selectedAchievement.userProgress, selectedAchievement.maxProgress)}</span>
                   <span>{selectedAchievement.progressPercent}%</span>
                 </div>
-                <div style={{ border: '2px inset #808080', padding: '2px' }}>
-                  <div style={{
-                    width: `${selectedAchievement.progressPercent}%`,
-                    height: '12px',
-                    background: presenter.getRarityColor(selectedAchievement.rarity),
-                  }} />
+                <div className="retro-achievement-progress">
+                  <div 
+                    className="retro-achievement-progress-fill"
+                    style={{ 
+                      width: `${selectedAchievement.progressPercent}%`,
+                      height: '12px',
+                      background: presenter.getRarityColor(selectedAchievement.rarity),
+                    }}
+                  />
                 </div>
               </div>
             </RetroGroupBox>
@@ -285,12 +204,12 @@ export default function RetroAchievementContent({
             )}
 
             {selectedAchievement.isUnlocked && selectedAchievement.unlockedAt && (
-              <p style={{ marginTop: '12px', fontSize: '11px', color: '#008000' }}>
+              <p className="retro-achievement-modal-unlocked">
                 ✓ Unlocked: {new Date(selectedAchievement.unlockedAt).toLocaleDateString()}
               </p>
             )}
 
-            <div style={{ marginTop: '16px', textAlign: 'right' }}>
+            <div className="retro-achievement-modal-footer">
               <RetroButton onClick={() => setSelectedAchievement(null)}>Close</RetroButton>
             </div>
           </div>
