@@ -128,8 +128,11 @@ export function RetroHeader() {
         <Link href="/profile" className="retro-link" style={{ marginRight: '12px' }}>
           Profile
         </Link>
-        <Link href="/match-history" className="retro-link">
+        <Link href="/match-history" className="retro-link" style={{ marginRight: '12px' }}>
           Match History
+        </Link>
+        <Link href="/settings" className="retro-link">
+          ⚙️ Settings
         </Link>
       </div>
     </>
